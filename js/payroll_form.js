@@ -105,3 +105,32 @@ const getInputElementValue = function (id) {
     let value = document.getElementById(id).value;
 
 }
+
+const resetForm= () => {
+    setValue('#name','');
+    unsetSelectedValues('[name=profile]');
+    unsetSelectedValues('[name=gender]');
+    unsetSelectedValues('[name=department]');
+    setValue('#salary','');
+    setValue('#note','');
+    setValue('#day','1');
+    setValue('#month','March');
+    setValue('#year',2019);
+  }
+  
+  const unsetSelectedValues = (propertValue) => {
+    let allItems = document.querySelectorAll(propertValue);
+    allItems.forEach(item => {
+        item.checked = false;
+    });
+  }
+  
+  const setTextValue = (id, value) => {
+    const element = document.querySelector(id);
+    element.textContent = value;
+  }
+  
+  const setValue = (id, value) => {
+    const element = document.querySelector(id);
+    element.value = value;
+  }
