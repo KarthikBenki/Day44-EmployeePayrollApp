@@ -25,3 +25,70 @@ window.addEventListener('DOMContentLoaded', (event) => {
     salary.addEventListener('input', getSalary)
 
 });
+// day 44 uc 3
+const save = () => {
+    try {
+        let employeePayrollData = createEmployeePayroll();
+    } catch (e) {
+        return;
+    }
+}
+
+const createEmployeePayroll = () => {
+    let employeePayrollData = new EmployeePayrollData(); //creation of object
+    try {
+        employeePayrollData.name = getInputValueById('#name');
+    } catch (e) {
+        setTextValue('.text-error', e)
+        throw e;
+    }
+
+    employeePayrollData.profilePic = getSelectedValues('[name=profile]').pop()
+    employeePayrollData.gender = getSelectedValues('[name=gender]').pop()
+    employeePayrollData.department = getSelectedValues('[name=department]')
+    employeePayrollData.salary = getInputValueById('#salary')
+    employeePayrollData.note = getInputValueById('#notes')
+    let date = getInputValueById('#day') + " " + getInputValueById('#month') + " " + getInputValueById('#year');
+    employeePayrollData.date = Date.parse(date);
+    alert(employeePayrollData.toString());
+    return employeePayrollData;
+
+}
+
+const getSelectedValues = (propertyValue) => {
+    let allItems = document.querySelectorAll(propertyValue);
+    let selItems = [];
+    allItems.forEach((item) => {
+        if (item.checked) {
+            selItems.push(item.value)
+        }
+    })
+    return selItems;
+}
+
+/*
+1:query selector is a newever feature
+2:The querysecector method can be used when selecting by element name,
+nesting, or class name.
+3: querySelector lets u find elements with rules that can,t be 
+expressed with get elementById
+
+*/
+
+const getInputValueById = (id) => {
+    let value = document.querySelector(id).value;
+    return value;
+}
+
+/*
+1:getElementById is better supported than querySelector in older versions
+of the browsers.
+2: The thing with getElementById is that it only allows to select an 
+element by its id.
+
+*/
+
+const getInputElementValue = function (id) {
+    let value = document.getElementById(id).value;
+
+}
