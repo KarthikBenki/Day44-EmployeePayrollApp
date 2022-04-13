@@ -29,9 +29,22 @@ window.addEventListener('DOMContentLoaded', (event) => {
 const save = () => {
     try {
         let employeePayrollData = createEmployeePayroll();
+        createAndUpdateStorage(employeePayrollData);
     } catch (e) {
         return;
     }
+}
+
+//UC4
+const createAndUpdateStorage = function (employeePayrollData) {
+    let employeePayrollList = JSON.parse(localStorage.getItem("EmployeePayrollList"));
+    if (employeePayrollList != undefined) {
+        employeePayrollList = employeePayrollList.push(employeePayrollData)
+    } else {
+        employeePayrollList = [employeePayrollData] //need to ask in doubt session
+    }
+    alert(employeePayrollList.toString())
+    localStorage.setItem("EmployeePayrollList", JSON.stringify(employeePayrollList))
 }
 
 const createEmployeePayroll = () => {
